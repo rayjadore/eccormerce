@@ -1,9 +1,13 @@
-    const express = require('express');
-    const router = express.Router();
+    const express = require('express'),
+    router = express.Router(),
+    user = require('../models/user'),
+    product = require('../models/product'),
+    order = require('../models/order');
+    
 
     router.post('/login', (req,res)=>{
-
-    });;
+       
+    });
 
     router.post('/register', (req,res)=>{
 
@@ -25,7 +29,7 @@
 
 
     //product details
-    router.get('/products:id', (req,res)=>{
+    router.get('/products/:id', (req,res)=>{
 
     });
 

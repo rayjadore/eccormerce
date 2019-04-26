@@ -32,7 +32,8 @@
             lastName: clean(req.body.lastName,res,req),
             state: clean(req.body.state,res,req),
             userIp: clean(req.body.userIp,res,req),
-            zip: clean(req.body.zip,res,req)
+            zip: clean(req.body.zip,res,req),
+            address: clean(req.body.address,res,req)
         });
   
 
@@ -84,13 +85,25 @@
 
     // get a users' profile
     router.get('/profile', (req,res)=>{
-
+        return res.json({message: 'profile page'});
     });
 
     //upload one or more products
     router.post('/product', ()=>{
         // upload the image of the product
-        // save the product to DB
+        // save the product to DB 
+ 
+        // SET STORAGE
+        const storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+            cb(null, 'uploads')
+            },
+            filename: function (req, file, cb) {
+            cb(null, file.name + '-' + Date.now())
+            }
+        });
+   
+        const upload = multer({ storage: storage })
 
     });
 

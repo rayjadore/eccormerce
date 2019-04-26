@@ -5,6 +5,7 @@ mongoose = require('mongoose'),
 cors = require('cors'),
 path = require('path'),
 config = require('./config/database'),
+expressSanitizer = require('express-sanitizer'),
 v1 = require('./routes/v1');
 
 mongoose.connect(config.databasePath, {useNewUrlParser: true}, (err)=>{
@@ -22,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+// applying sanitizer
+app.use(expressSanitizer());
 
 // unblock other domains
 app.use(cors());

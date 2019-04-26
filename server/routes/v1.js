@@ -7,6 +7,19 @@
     config = require('../config/database'),
     Product = require('../models/product'),
     Order = require('../models/order');
+
+      // SET STORAGE
+      const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, 'uploads')
+        },
+        filename: function (req, file, cb) {
+        cb(null, file.name + '-' + Date.now())
+        }
+    });
+
+    const upload = multer({ storage: storage });
+
     
     const clean = (value,res,req) => {
         if(typeof value !== 'string'){
@@ -91,20 +104,10 @@
     //upload one or more products
     router.post('/product', ()=>{
         // upload the image of the product
+        upload.array('productImage',20);
         // save the product to DB 
  
-        // SET STORAGE
-        const storage = multer.diskStorage({
-            destination: function (req, file, cb) {
-            cb(null, 'uploads')
-            },
-            filename: function (req, file, cb) {
-            cb(null, file.name + '-' + Date.now())
-            }
-        });
-   
-        const upload = multer({ storage: storage })
-
+      
     });
 
     // get products based on brand

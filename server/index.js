@@ -10,9 +10,9 @@ v1 = require('./routes/v1');
 
 mongoose.connect(config.databasePath, {useNewUrlParser: true}, (err)=>{
   if(err){
-      return console.log('Some problem with the connection ' +err)   
+      return console.log('Some problem with the connection ' +err);   
     } 
-    console.log('The Mongoose connection is ready')    
+    console.log('The Mongoose connection is ready');  
 });
 
 // initialize express

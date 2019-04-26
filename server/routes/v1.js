@@ -17,7 +17,7 @@
         return value;
     }
     const generateToken = (user)=> {
-        const token = jwt.sign({name: `${user.firstName} ${user.lastName}, id: ${user._id}`}, config.secret,{expiresIn:1209600});
+        const token = jwt.sign({name: `${user.firstname} ${user.lastname}, id: ${user._id}`}, config.secret,{expiresIn:1209600});
         return token;
     }
 
@@ -26,10 +26,10 @@
             city: clean(req.body.city,res,req),
             country: clean(req.body.country, res,req),
             email: clean(req.body.email,res,req),
-            firstName: clean(req.body.firstName,res,req),
+            firstname: clean(req.body.firstname,res,req),
             phone: clean(req.body.phone,res,req),
             password: bcrypt.hashSync(clean(req.body.password,res,req), bcrypt.genSaltSync(10)),
-            lastName: clean(req.body.lastName,res,req),
+            lastname: clean(req.body.lastname,res,req),
             state: clean(req.body.state,res,req),
             userIp: clean(req.body.userIp,res,req),
             zip: clean(req.body.zip,res,req),
@@ -41,7 +41,7 @@
             if (err) {
                 return res.status(500).send({ message: "user was not successfully created", success: false });
             }
-            return res.json({ message: `user ${req.body.firstName} ${req.body.lastName} was successfully created`, success: true });
+            return res.json({ message: `user ${req.body.firstname} ${req.body.lastname} was successfully created`, success: true });
         })
     });
 
